@@ -15,17 +15,15 @@ function App() {
             rel="noopener noreferrer"
           >
             Ticha Maenga
-          </a>
-          {""}
-          and is {""}
+          </a>{" "}
+          and is{" "}
           <a
             href="https://github.com/TishaNaturralle/my-app"
             target="_blank"
             rel="noopener noreferrer "
           >
             open-sourced on GitHub
-          </a>
-          {""}
+          </a>{" "}
           and{""}
           <a
             href="https://app.netlify.com/sites/dreamy-madeleine-da9f46.netlify.com/"
