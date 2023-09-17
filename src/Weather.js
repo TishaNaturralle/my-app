@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import FormattedDate from "./FormattedDate";
+
+import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 import "./Weather.css";
 
@@ -21,6 +22,11 @@ export default function Weather(props) {
     });
   }
 
+  function search() {
+    const apiKey = "dt7522ba4c017dfaoc53ab6bcb9a6246";
+    let apiUrl = `http://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -28,13 +34,6 @@ export default function Weather(props) {
 
   function handleCityChange(event) {
     setCity(event.target.value);
-  }
-
-  function search() {
-    const apiKey = "dt7522ba4c017dfaoc53ab6bcb9a6246";
-    let apiUrl = `http://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-    axios.get(apiUrl).then(handleResponse);
   }
 
   if (weatherData.ready) {
@@ -53,49 +52,18 @@ export default function Weather(props) {
             </div>
             <div className="col-3">
               <input
-              
                 type="submit"
                 value="Search"
                 className="btn btn-primary w-100"
               />
-              </div>
-              </form>
-              </div>
-              </div>
-               
-             <h1>{weatherData.city}</h1>
-        <ul>
-          <li>
-            <formattedDate date={weatherData.date}/>
-            </li>
-            <li className="text-capitalize">{weatherData.description}</li>
-       </ul>
-       <div className="row mt-3">
-        <div className="col-6">
-          <div className="clearfix">
-            <img
-            src={weatherData.iconUrl}
-            alt={weatherData.description}
-            className="float-left"
-            />
-            <div className="float-left">
-              <span className="temeperature">
-                {Math.round(weatherData.temperature)}
-              </span>
-              <span className="unit">c</span>
+            </div>
           </div>
-        </div>
+        </form>
+        <WeatherInfo data={weatherData} />
       </div>
-      <div className="col-6">
-        <ul>
-          <li>Humidity:{weatherData.humidity}%</li>
-          <li>Wind:{weatherData.wind}km/h</li>
-        </ul>
-      </div>
-      </div>
-      </div>
-
-
     );
-    }
-
+  } else {
+    search();
+    return "loading...";
+  }
+}
