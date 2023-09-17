@@ -14,7 +14,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Ticha Maenga{""}
+            Ticha Maenga
           </a>
           {""}
           and is {""}
@@ -24,6 +24,16 @@ function App() {
             rel="noopener noreferrer "
           >
             open-sourced on GitHub
+          </a>
+          {""}
+          and{""}
+          <a
+            href="https://app.netlify.com/sites/dreamy-madeleine-da9f46.netlify.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" "}
+            Hosted by Netlify
           </a>
         </footer>
       </div>
