@@ -22,13 +22,13 @@ export default function Weather(props) {
       city: response.data.city,
     });
   }
-
   function search() {
-    const apiKey = "017d56650cd168d68067850318775d43";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
+    const apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
+    let formattedCity = city.split(" ").join("%20");
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${formattedCity}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
+
   function handleSubmit(event) {
     event.preventDefault();
     search();
