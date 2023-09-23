@@ -2,7 +2,7 @@ import React from "react";
 import Weather from "./Weather";
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <div className="container">
@@ -38,5 +38,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

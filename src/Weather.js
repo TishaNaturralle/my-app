@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import WeatherInfo from "./WeatherInfo";
 import WeatherForecast from "./WeatherForecast";
 import axios from "axios";
@@ -19,16 +18,9 @@ export default function Weather(props) {
       description: response.data.condition.description,
       icon: response.data.condition.icon,
       wind: response.data.wind.speed,
-      city: response.data.city,
+      cityUrl: response.data.condition.icon_url,
     });
   }
-  function search() {
-    const apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
-    let formattedCity = city.split(" ").join("%20");
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${formattedCity}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -36,6 +28,13 @@ export default function Weather(props) {
 
   function handleCityChange(event) {
     setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
+    let formattedCity = city.split(" ").join("%20");
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${formattedCity}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   if (weatherData.ready) {
@@ -67,6 +66,6 @@ export default function Weather(props) {
     );
   } else {
     search();
-    return "loading...";
+    return "Loading...";
   }
 }
